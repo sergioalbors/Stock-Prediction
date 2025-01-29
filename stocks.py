@@ -21,22 +21,26 @@ with open("MU DATA.csv", encoding="ascii") as file:
 data = pd.read_csv("MU DATA.csv", encoding="ascii")
 print(data)
 
-x = np.array([2, 3, 6, 7, 8, 10, 13, 14, 15])
-y = np.array([87.33, 89.87, 99.26, 101.91, 99.41, 99.34, 95.06, 97.36, 103.19])
+arr = np.array([1, 2, 3])
+arr_tuple = tuple(arr)  # Convert ndarray to tuple
+my_set = {arr_tuple}  # Now this works
+print(my_set)
+
+#x = np.array([2, 3, 6, 7, 8, 10, 13, 14, 15])
+#y = np.array([87.33, 89.87, 99.26, 101.91, 99.41, 99.34, 95.06, 97.36, 103.19])
+
+Días = data["DATE"]
+Precio = data["CLOSE"]
 
 plt.figure(figsize=(10,5))
-plt.plot(x,y)
+plt.xlabel(Días)
+plt.plot(Días, Precio)
 plt.title('Micron technology price.', fontsize=20)
-plt.ylabel('price in dollars.')
-
+plt.ylabel(Precio)
+plt.xlim(0, 15)
 plt.yticks(np.arange(80, 120, 5))
 plt.ylim(80, 115)
 plt.show()
 
-features = ['OPEN', 'MAX', 'MIN', 'CLOSE', 'VOLUME']
-plt.subplots(figsize=(10,5))
-for i, col in enumerate(features):
-    plt.subplot(2,3,i+1)
-    sb.distplot(x,y[col])
-plt.show()
+
 
